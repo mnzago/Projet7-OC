@@ -19,7 +19,7 @@ st.write("Ce dashboard à destination des conseillers permettra d'avoir de mani�
 " et rapide le score d'octroi d'un crédit pour un client donnée."
 " Il contiendra des informations relatives à un client, le score, l'interprétation de ce score "
 "ainsi que ses informations comparées à l'ensemble des clients")
-st.write("Pour le projet prendre pour exemple les clients suivants '100002', '100011' ou '331040'")
+st.caption("Pour le projet prendre pour exemple les clients suivants 'vide', '100000', '100002', '100011' ou '331040'")
 
 @st.cache_data()
 def get_list_clients():
@@ -39,15 +39,9 @@ def get_data_from_customer(id):
     return response.json()
 
 def display_customer_data(element):
-    if element == '':
-        st.subheader(f"Entrer un numéro de clients")
-    #elif element not in list_cli:
-        #st.subheader(f"Client {element} inconnu: entrer un numéro de clients")
-    else:
-        r = get_data_from_customer(element)  # on fait appel à l'API
-        st.subheader(f"Voici les données et les résultats du client {element}")
-        st.write(pd.DataFrame.from_dict(r, orient='index'))
-        #element.dataframe(pd.DataFrame.from_dict(r[0]))  # on affiche les données du client
+    r = get_data_from_customer(element)  # on fait appel à l'API
+    st.subheader(f"Voici les données et les résultats du client {element}")
+    st.write(pd.DataFrame.from_dict(r, orient='index'))
 
 def gauge_plot(probability, threshold):
     value = round(probability, 2) * 100
@@ -83,9 +77,22 @@ def get_predict_from_customer(id):
 def prediction_cli(element):
     result = get_predict_from_customer(element)
     data_result = pd.DataFrame.from_dict(result, orient='index')
+    if data_result[0]['predict'] == 1:
+        st.subheader('Le prêt est refusé!')
+    else:
+        st.subheader('Le prêt est accordé!')
+    st.write(f"La probabilité que le client {element} ne rembourse pas son prêt est de: {(round(data_result[0]['probability'],2))*100} %"
+    f", soit {(round(data_result[0]['probability'],2))*100 - (round(data_result[0]['threshold'],2))*100} point(s)"
+    " par rapport à notre seuil optimal")
     gauge = gauge_plot(data_result[0]['probability'], data_result[0]['threshold'])
     st.write(gauge)
 
 client = st.sidebar.text_input(label="Saisir l'identifiant d'un client :bust_in_silhouette:")
-display_customer_data(client)
-prediction_cli(client)
+list_cli = get_list_clients()
+if client == '':
+    st.subheader(f"Entrer un numéro de clients")
+elif int(client) not in list_cli:
+    st.subheader(f"Le client est inconnu")
+else:
+    display_customer_data(client)
+    prediction_cli(client)
