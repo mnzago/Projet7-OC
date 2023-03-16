@@ -106,6 +106,10 @@ def explain_global():
     result = get_explain_from_all()
     data = pd.DataFrame.from_dict(result['explain_data'], orient='index').T
     shap_values = pd.DataFrame(result['shap_values'])
+    st.subheader("Interprétation locale")
+    st.write("Le graphique ci-dessous nous donne les variables qui contribuent le plus à la décision d'obtention du prêt pour ce client")
+    st.write("Si la variable est en rouge: variable qui favorise le refus")
+    st.write("Si la variable est en bleu: variable qui favorise l'accord'")
     st.markdown(
         """<style>
         .streamlit-expanderContent {background:white;}
