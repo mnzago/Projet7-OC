@@ -143,10 +143,11 @@ def explain_local(element):
         </style>""",
         unsafe_allow_html=True,
     )  # Un peu de style CSS pour garantir un fond blanc sur les expander (graphiques SHAP mieux intégrés !)
-    fig3, ax = plt.subplots()
-    plt.title("Interprétation locale")
-    ax = shap.plots.waterfall(interp)
-    st.pyplot(fig3)
+    st_shap(shap.plots.waterfall(interp))
+    #fig3, ax = plt.subplots()
+    #plt.title("Interprétation locale")
+    #ax = shap.plots.waterfall(interp)
+    #st.pyplot(fig3)
 
 # Situation du client par rapport à un échantillon de 1000 clients
 def feature_boxplot(data, feature, value, customer_id):
