@@ -132,9 +132,6 @@ def explain_local(element):
     data_cli = pd.DataFrame.from_dict(result['explain_data_id'], orient='index').T
     shap_values = pd.DataFrame(result['shap_values'])
     expected_value = result['expected_value']
-    st.write('data_cli:', data_cli, 
-            'shap_values:', shap_values,
-            'expected_value:' , expected_value)
 
     interp = shap.Explanation(np.array(shap_values)[0],
                         base_values=expected_value,
