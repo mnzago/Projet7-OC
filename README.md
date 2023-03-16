@@ -7,7 +7,7 @@ Il contient :
 - notebook.ipynb: Le notebook du nettoyage, exploration et mdélisation des données
 - app.py: Le programme FLASK
 - app_streamlit.py: Le programme Streamlit
-- data_clean_sample.pickle: Le Datamart après réduction
+- data_cleaned_sample.pickle: Le Datamart après réduction
 - model.pickle: Le modèle entrainé
 - explainer.pickle: l'explication des variables (Tree.Explainer)
 - Procfile: Fichier qui permet à Heroku de savoir qu'on utilise gunicorn pour Flask
