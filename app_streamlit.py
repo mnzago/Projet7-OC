@@ -115,8 +115,8 @@ def explain_global():
         unsafe_allow_html=True,
     )  # Un peu de style CSS pour garantir un fond blanc sur les expander (graphiques SHAP mieux intégrés !)
     st_shap(shap.summary_plot(np.array(shap_values), data, plot_type="bar", max_display = 10))
-    st.write("Si la variable est en rouge: variable qui favorise le refus")
-    st.write("Si la variable est en bleu: variable qui favorise l'accord'")
+    ##st.write("Si la variable est en rouge: variable qui favorise le refus")
+    ##st.write("Si la variable est en bleu: variable qui favorise l'accord'")
     st.markdown(
         """<style>
         .streamlit-expanderContent {background:white;}
@@ -152,10 +152,6 @@ def explain_local(element):
         unsafe_allow_html=True,
     )  # Un peu de style CSS pour garantir un fond blanc sur les expander (graphiques SHAP mieux intégrés !)
     st_shap(shap.plots.waterfall(interp))
-    #fig3, ax = plt.subplots()
-    #plt.title("Interprétation locale")
-    #ax = shap.plots.waterfall(interp)
-    #st.pyplot(fig3)
 
 # Situation du client par rapport à un échantillon de 1000 clients
 def feature_boxplot(data, feature, value, customer_id):
