@@ -99,7 +99,7 @@ def prediction_cli(element):
  # Interprétation globale
 @st.cache_data(show_spinner=False)
 def get_explain_from_all():
-    response = requests.get(f"{API_URL}/explain/")
+    response = requests.get(f"{URL}/explain/")
     return response.json()
 
 def explain_global():
@@ -124,7 +124,7 @@ def explain_global():
 # Interprétation locale
 @st.cache_data(show_spinner=False)
 def get_explain_from_customer(id):
-    response = requests.get(f"{API_URL}/explain/{id}")
+    response = requests.get(f"{URL}/explain/{id}")
     return response.json()
 
 def explain_local(element):
