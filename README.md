@@ -11,7 +11,8 @@ Il contient :
 - model.pickle: Le modèle entrainé
 - explainer.pickle: l'explication des variables (Tree.Explainer)
 - Procfile: Fichier qui permet à Heroku de savoir qu'on utilise gunicorn pour Flask
-- runtime
+- runtime.txt: Fichier informant Heroku de la version de Python utilisée
+- requirements.txt: Fichier contenant les librairies utilisées pour le bon fonctionnement de notre Dashboard
 
 # Flask API: 
  
