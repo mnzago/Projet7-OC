@@ -41,6 +41,7 @@ Comment pousser mes fichiers dans Heroku :
   - Intaller Heroku CLI
   - Dans le terminal:
   - `heroku login` (il faut se connecter à son compte)
+  - git init
   - git add [nom du fichier]
   - git commit -m "commentaire" (permet d'avoir le dernier commentaire lors d'une modification)
   - `heroku create [nom_application] --region eu`
@@ -48,6 +49,16 @@ Comment pousser mes fichiers dans Heroku :
   - `git push heroku main` (or master)
 
 L'application sera hébergé dans Heroku à l'adresse : `https://nom_application.herokuapp.com/`
+
+## Push des fichiers dans Github : 
+
+ - Dans le terminal:
+  - git init
+  - git add [nom du fichier]
+  - git commit -m "commentaire" (permet d'avoir le dernier commentaire lors d'une modification)
+  - git remote add origin https://github.com/EtudiantOC/[nom du repository].git
+  - git branch -M main
+  - git push -u origin main
 
 # Dashboard Streamlit: 
 
